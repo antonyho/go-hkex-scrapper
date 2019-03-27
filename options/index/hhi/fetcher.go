@@ -8,6 +8,8 @@ import (
 	"strconv"
 	"time"
 
+	"github.com/antonyho/go-hkex-scrapper/options/index"
+
 	"github.com/antonyho/go-hkex-scrapper/options"
 )
 
@@ -19,7 +21,7 @@ var (
 	ErrNoReportAvailable = errors.New("no report available")
 )
 
-func Get(date time.Time) ([]DailyMarketReport, error) {
+func Get(date time.Time) ([]index.DailyMarketReport, error) {
 	resp, err := http.Get(fmt.Sprintf(SourceURLPattern, options.FormatURLDate(date)))
 	if err != nil {
 		return nil, err
@@ -35,7 +37,7 @@ func Get(date time.Time) ([]DailyMarketReport, error) {
 	if err != nil {
 		return nil, err
 	}
-	dailyMarketReport := []DailyMarketReport{}
+	dailyMarketReport := []index.DailyMarketReport{}
 	for _, row := range rows {
 		if len(row) == 20 {
 			strikePrice, _ := strconv.Atoi(row[1])
@@ -56,7 +58,7 @@ func Get(date time.Time) ([]DailyMarketReport, error) {
 			volume, _ := strconv.Atoi(row[17])
 			openInterest, _ := strconv.Atoi(row[18])
 			changeInOpenInterest, _ := strconv.Atoi(row[19])
-			entry := DailyMarketReport{
+			entry := index.DailyMarketReport{
 				ContractMonth: row[0],
 				StrikePrice:   uint(strikePrice),
 				Type:          row[2],

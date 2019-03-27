@@ -1,4 +1,4 @@
-package hhi
+package index
 
 import (
 	"github.com/stretchr/testify/assert"
@@ -10,5 +10,5 @@ func TestDailyMarketReport_ContractMonthTime(t *testing.T) {
 	r := DailyMarketReport{ContractMonth: "MAR-19"}
 	month, err := r.ContractMonthTime()
 	assert.NoError(t, err)
-	assert.EqualValues(t, time.Date(2019, 3, 1, 0, 0,0, 0, time.UTC), month)
+	assert.EqualValues(t, time.Date(2019, 3, 1, 0, 0, 0, 0, time.UTC), month)
 }

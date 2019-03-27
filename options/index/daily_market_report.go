@@ -1,8 +1,8 @@
-package hsi
+package index
 
 import "time"
 
-// DailyMarketReport for HSI Options from HKEX
+// DailyMarketReport for index(es) Options from HKEX
 type DailyMarketReport struct {
 	ContractMonth string
 	StrikePrice   uint
